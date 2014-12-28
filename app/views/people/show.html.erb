@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @person.last_name %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @person.company %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @person.email %>
+</p>
+
+<p>
+  <strong>Job title:</strong>
+  <%= @person.job_title %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @person.phone %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @person.website %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @person.owner_id %>
+</p>
+
+<p>
+  <strong>Converted:</strong>
+  <%= @person.converted %>
+</p>
+
+<p>
+  <strong>Unread by owner:</strong>
+  <%= @person.unread_by_owner %>
+</p>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>
