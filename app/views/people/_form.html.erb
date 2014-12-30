@@ -1,60 +1,103 @@
-<%= form_for(@person) do |f| %>
-  <% if @person.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+<%= form_for @person, :html => { :class => "form-horizontal person" } do |f| %>
 
-      <ul>
-      <% @person.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @person.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @person.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-    <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
     </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= error_span(@person[:name]) %>
   </div>
-  <div class="field">
-    <%= f.label :company %><br>
-    <%= f.text_field :company %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :job_title %><br>
-    <%= f.text_field :job_title %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :website %><br>
-    <%= f.text_field :website %>
-  </div>
-  <div class="field">
-    <%= f.label :converted %><br>
-    <%= f.check_box :converted %>
-  </div>
-  <div class="field">
-    <%= f.label :unread_by_owner %><br>
-    <%= f.check_box :unread_by_owner %>
-  </div>
-
-    <div class="field">
-      <%= f.label :company_to_use %><br>
-      <%= f.select :company_to_use, %w(resultados_digitais other_company) %>
+  <div class="control-group">
+    <%= f.label :last_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :last_name, :class => 'form-control' %>
     </div>
-
-  <div class="actions">
-    <%= f.submit %>
+    <%= error_span(@person[:last_name]) %>
   </div>
+  <div class="control-group">
+    <%= f.label :company, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :company, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:company]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:email]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :job_title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :job_title, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:job_title]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :phone, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :phone, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:phone]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :website, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :website, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:website]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :owner_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :owner_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:owner_id]) %>
+  </div>
+
+  <div class="checkbox">
+    <%= f.label :converted , :class => 'control-label' do %>
+      <%= f.check_box :converted %> <%= p 'converted' %>
+    <% end %>
+    <%= error_span(@person[:converted]) %>
+  </div>
+
+  <div class="checkbox">
+    <%= f.label :unread_by_owner, :class => 'control-label' do %>
+      <%= f.check_box :unread_by_owner %> <%= p 'unread by owner' %>
+    <% end %>
+    <%= error_span(@person[:unread_by_owner]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :company_to_use, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :company_to_use, %w(resultados_digitais other_company), :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:owner_id]) %>
+  </div>
+
+  <div class="control-group margin-top-10">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            people_path, :class => 'btn btn-default' %>
+  </div>
+
 <% end %>
