@@ -64,13 +64,6 @@
     </div>
     <%= error_span(@person[:website]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :owner_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :owner_id, :class => 'form-control' %>
-    </div>
-    <%= error_span(@person[:owner_id]) %>
-  </div>
 
   <div class="checkbox">
     <%= f.label :converted , :class => 'control-label' do %>
@@ -89,7 +82,7 @@
   <div class="control-group">
     <%= f.label :company_to_use, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :company_to_use, %w(resultados_digitais other_company), :class => 'form-control' %>
+      <%= f.select :company_to_use, %w(resultados_digitais company_2), :class => 'form-control' %>
     </div>
     <%= error_span(@person[:owner_id]) %>
   </div>

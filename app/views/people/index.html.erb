@@ -11,9 +11,6 @@
       <th><%= model_class.human_attribute_name(:company) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:job_title) %></th>
-      <th><%= model_class.human_attribute_name(:phone) %></th>
-      <th><%= model_class.human_attribute_name(:website) %></th>
-      <th><%= model_class.human_attribute_name(:owner_id) %></th>
       <th><%= model_class.human_attribute_name(:converted) %></th>
       <th><%= model_class.human_attribute_name(:unread_by_owner) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -28,9 +25,6 @@
         <td><%= person.company %></td>
         <td><%= person.email %></td>
         <td><%= person.job_title %></td>
-        <td><%= person.phone %></td>
-        <td><%= person.website %></td>
-        <td><%= person.owner_id %></td>
         <td><%= person.converted %></td>
         <td><%= person.unread_by_owner %></td>
         <td>

@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
 
   attr_accessor :company_to_use
 
+  validates_presence_of :name, :last_name, :company
 
   after_save :set_to_salesforce
 

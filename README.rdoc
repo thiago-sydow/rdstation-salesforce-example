@@ -1,28 +1,66 @@
-== README
+== Resultados Digitais
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Using the ActiveRecord::Salesforce ( https://github.com/thiago-sydow/activerecord-salesforce ) to create SalesForce objects
+in an easy way. Create a model, map as required by the gem and save it ! Below there's an example:
 
-Things you may want to cover:
+    require 'active_record/salesforce'
 
-* Ruby version
+    class Person < ActiveRecord::Base
+      include ActiveRecord::Salesforce::Base
 
-* System dependencies
+      attr_accessor :company_to_use
 
-* Configuration
+      after_save :set_to_salesforce
 
-* Database creation
+      salesforce_object :Lead
 
-* Database initialization
+      #SalesForce_attribute, RDStation_attribute
+      map_attribute :FirstName      , :name
+      map_attribute :LastName       , :last_name
+      map_attribute :Company        , :company
+      map_attribute :Email          , :email
+      map_attribute :JobTitle__c    , :job_title
+      map_attribute :Phone          , :phone
+      map_attribute :Website        , :website
+      map_attribute :OwnerId        , :owner_id
+      map_attribute :IsConverted    , :converted
+      map_attribute :IsUnreadByOwner, :unread_by_owner
 
-* How to run the test suite
+      def initialize(attributes={})
+        super
+        @converted ||= false
+        @unread_by_owner ||= false
+      end
 
-* Services (job queues, cache servers, search engines, etc.)
+      private
+      def set_to_salesforce
+        @config_file = YAML.load_file("config/salesforce.yml")
+        save_in_salesforce @config_file[company_to_use]
+      end
 
-* Deployment instructions
-
-* ...
+    end
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+The configuration file must have the following structure:
+
+    # config/salesforce.yml
+
+    resultados_digitais:
+        client_id: [CLIENT_ID]
+        client_secret: [CLIENT_SECRET]
+        username: [USERNAME]
+        password: [PASSWORD + TOKEN]
+
+    other_company:
+        client_id: [CLIENT_ID]
+        client_secret: [CLIENT_SECRET]
+        username: [USERNAME]
+        password: [PASSWORD + TOKEN]
+
+
+== Next Features
+
+    - Change authentication to OAuth, and add key of user in database, removing sensitive data
+    - List Object from SalesForce ( ActiveRecord::Salesforce gem )
+    - Remove Object from SalesForce when removing from application ( ActiveRecord::Salesforce gem )
+    - Add funcional tests (controllers, views)
