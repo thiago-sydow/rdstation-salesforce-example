@@ -28,8 +28,6 @@
         <td><%= person.converted %></td>
         <td><%= person.unread_by_owner %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_person_path(person), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       person_path(person),
                       :method => :delete,
