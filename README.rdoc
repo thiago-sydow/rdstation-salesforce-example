@@ -57,6 +57,10 @@ The configuration file must have the following structure:
         username: [USERNAME]
         password: [PASSWORD + TOKEN]
 
+== Running Locally
+    You must have PostgreSQL installed locally to run this app.
+    clone this repo (git clone https://github.com/thiago-sydow/rdstation-salesforce-example.git), run bundle install to
+    install dependencies, and then rails s
 
 == Next Features
 
